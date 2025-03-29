@@ -1,4 +1,4 @@
-FROM debian:stable-slim AS builder
+FROM alpine:latest AS builder
 
 ARG TARGETPLATFORM
 
@@ -21,7 +21,7 @@ RUN case "$TARGETPLATFORM" in \
         "linux/386") cp ./"NDI SDK for Linux"/bin/i686-linux-gnu/ndi-discovery-server /ndi/ndi-discovery-server ;; \
     esac
 
-FROM debian:stable-slim
+FROM alpine:latest
 
 WORKDIR /ndi
 
