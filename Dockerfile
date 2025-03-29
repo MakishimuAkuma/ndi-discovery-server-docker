@@ -1,4 +1,4 @@
-FROM ubuntu:latest AS builder
+FROM --platform=$BUILDPLATFORM debian:latest AS builder
 
 ARG TARGETPLATFORM
 
@@ -21,7 +21,7 @@ RUN case "$TARGETPLATFORM" in \
         "linux/386") cp ./"NDI SDK for Linux"/bin/i686-linux-gnu/ndi-discovery-server /ndi/ndi-discovery-server ;; \
     esac
 
-FROM ubuntu:latest
+FROM debian:latest
 
 WORKDIR /ndi
 
