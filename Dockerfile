@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM debian:latest AS builder
+FROM busybox:stable-glibc AS builder
 
 ARG TARGETPLATFORM
 
@@ -16,11 +16,13 @@ RUN mkdir /ndi
 
 RUN case "$TARGETPLATFORM" in \
         "linux/amd64") cp ./"NDI SDK for Linux"/bin/x86_64-linux-gnu/ndi-discovery-server /ndi/ndi-discovery-server ;; \
-        "linux/arm/v7") cp ./"NDI SDK for Linux"/bin/arm-rpi4-linux-gnueabihf/ndi-discovery-server /ndi/ndi-discovery-server ;; \
+        "linux/arm64") cp ./"NDI SDK for Linux"/bin/aarch64-rpi4-linux-gnueabi/ndi-discovery-server /ndi/ndi-discovery-server ;; \
+        "linux/arm/v8") cp ./"NDI SDK for Linux"/bin/arm-rpi4-linux-gnueabihf/ndi-discovery-server /ndi/ndi-discovery-server ;; \
+        "linux/arm/v7") cp ./"NDI SDK for Linux"/bin/arm-rpi3-linux-gnueabihf/ndi-discovery-server /ndi/ndi-discovery-server ;; \
         "linux/386") cp ./"NDI SDK for Linux"/bin/i686-linux-gnu/ndi-discovery-server /ndi/ndi-discovery-server ;; \
     esac
 
-FROM debian:latest
+FROM busybox:stable-glibc
 
 WORKDIR /ndi
 
