@@ -1,4 +1,4 @@
-FROM busybox:stable-glibc AS builder
+FROM busybox:stable AS builder
 
 ARG TARGETPLATFORM
 
@@ -22,7 +22,7 @@ RUN case "$TARGETPLATFORM" in \
         "linux/386") cp ./"NDI SDK for Linux"/bin/i686-linux-gnu/ndi-discovery-server /ndi/ndi-discovery-server ;; \
     esac
 
-FROM busybox:stable-glibc
+FROM busybox:stable
 
 WORKDIR /ndi
 
