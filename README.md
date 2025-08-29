@@ -1,1 +1,1 @@
-NDI SDK v6
+NDI SDK v6x
