@@ -28,8 +28,6 @@ RUN case "$TARGETPLATFORM" in \
 
 FROM docker.io/debian:stable-slim
 
-ARG TARGETPLATFORM
-
 WORKDIR /ndi
 
 COPY --from=sort /ndi/ndi-discovery-server /ndi/ndi-discovery-server
